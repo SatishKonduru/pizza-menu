@@ -48,11 +48,11 @@ const pizzaData = [
 
 
 function Header() {
-  const myStyle = {
-    color: "red",
-    fontSize: "48px",
-    textTransform: "uppercase",
-  };
+  // const myStyle = {
+  //   color: "red",
+  //   fontSize: "48px",
+  //   textTransform: "uppercase",
+  // };
   return (
     <header className="header">
       <h1>RSK's Pizza Hut</h1>
@@ -63,7 +63,13 @@ function Header() {
 function Menu() {
   return (
     <main className="menu">
-      <Pizza
+      <h2>Our Menu</h2>
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => {
+          return <Pizza pizzaObj={pizza} key={pizza.name} />;
+        })}
+      </ul>
+      {/* <Pizza
         name="Pizza prosciutto"
         ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
         photoName="pizzas/prosciutto.jpg"
@@ -74,21 +80,21 @@ function Menu() {
         ingredients="Tomato, Mushrooms"
         photoName="pizzas/funghi.jpg"
         price={12}
-      />
+      /> */}
     </main>
   );
 }
 function Pizza(props) {
   console.log("Props: ", props);
   return (
-    <div className="pizza">
-      <img src={props.photoName} alt={props.name} />
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredients}</p>
-        <span>{props.price}</span>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>₹ {props.pizzaObj.price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
